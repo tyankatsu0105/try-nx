@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "projects": {
+    "client1": {
+      "root": "apps/client1",
+      "sourceRoot": "apps/client1/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/client1",
+            "index": "apps/client1/src/index.html",
+            "main": "apps/client1/src/main.tsx",
+            "polyfills": "apps/client1/src/polyfills.ts",
+            "tsConfig": "apps/client1/tsconfig.app.json",
+            "assets": [
+              "apps/client1/src/favicon.ico",
+              "apps/client1/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/babel"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/client1/src/environments/environment.ts",
+                  "with": "apps/client1/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "client1:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "client1:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/client1/.eslintrc",
+            "tsConfig": [
+              "apps/client1/tsconfig.app.json",
+              "apps/client1/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/client1/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/client1/jest.config.js",
+            "tsConfig": "apps/client1/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "client1-e2e": {
+      "root": "apps/client1-e2e",
+      "sourceRoot": "apps/client1-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/client1-e2e/cypress.json",
+            "tsConfig": "apps/client1-e2e/tsconfig.e2e.json",
+            "devServerTarget": "client1:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "client1:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "config": "apps/client1-e2e/.eslintrc",
+            "tsConfig": ["apps/client1-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/client1-e2e/**"]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "schematics": {
+    "@nrwl/workspace": {
+      "library": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/cypress": {
+      "cypress-project": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/next": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/web": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/node": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/nest": {
+      "application": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/express": {
+      "application": {
+        "linter": "eslint"
+      }
+    }
+  },
+  "defaultProject": "client1"
+}
