@@ -1,8 +1,6 @@
 import React, { useState,useEffect } from 'react';
+import { Todo } from '@tyankatsu-nx/data';
 
-interface Todo {
-  title: string;
-}
 export const App = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
 
