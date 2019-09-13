@@ -1,5 +1,5 @@
-- nr nx generate @nrwl/react:application client1
-- nr start client1
-- nr e2e client1-e2e
-- nr nx g @nrwl/express:app api --frontendProject=client1
-- nr nx g @nrwl/workspace:lib data
+- nr nx -- generate @nrwl/react:application client1
+- nr start -- client1
+- nr e2e -- client1-e2e
+- nr nx -- g @nrwl/express:app api --frontendProject=client1
+- nr nx -- g @nrwl/workspace:lib data
