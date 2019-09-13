@@ -13,6 +13,15 @@
     },
     "client1-e2e": {
       "tags": []
+    },
+    "client2": {
+      "tags": []
+    },
+    "client2-e2e": {
+      "tags": []
+    },
+    "api": {
+      "tags": []
     }
   }
 }
